@@ -1,0 +1,19 @@
+name:                mopolo
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/TeofilC/mopolo#readme
+license:             BSD3
+author:              Teofil Camarasu
+maintainer:          teofilcamarasu@gmail.com
+copyright:           2018 Teofil Camarasu
+extra-source-files:
+- README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+
+executables:
+  mopolo:
+    source-dirs:      src
+    main:             Main.hs

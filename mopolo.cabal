@@ -1,0 +1,29 @@
+-- This file has been generated from package.yaml by hpack version 0.21.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: d8aaf90b0ab1a1ce8bf13b1b74a70538cf91ff18da2762c26c1f74317a8a4210
+
+name:           mopolo
+version:        0.1.0.0
+homepage:       https://github.com/TeofilC/mopolo#readme
+author:         Teofil Camarasu
+maintainer:     teofilcamarasu@gmail.com
+copyright:      2018 Teofil Camarasu
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+executable mopolo
+  main-is: Main.hs
+  other-modules:
+      Paths_mopolo
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
