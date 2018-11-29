@@ -3,8 +3,9 @@
 module Main where
 import Control.Monad
 import Control.Applicative hiding (empty)
-import Data.List
+import Data.List hiding (and)
 import Data.Maybe
+import Data.Bits
 
 data Sentence = Let String
               | Cond Sentence Sentence
@@ -16,10 +17,19 @@ instance Show Sentence where
   show (Let s)= s
   show (Neg (Nec (Neg x))) = "@" ++ show x
   show (Neg x) = "~" ++ show x
-  show (Cond (Neg x) y) = "(" ++ show x ++ "^" ++ show y ++ ")"
+  show (Cond (Neg x) y) = "(" ++ show x ++ "u" ++ show y ++ ")"
   show (Cond x y) = "("++ show x ++ "->" ++ show y ++ ")"
   show (Nec x) = "#" ++ show x
 
+instance Bits Sentence where
+  (.|.) x y  = Neg x --> y
+  (.&.) x y = Neg (Neg x .|. Neg y)
+  xor x y = Neg (x --> y .&. y --> x)
+  complement = Neg
+  isSigned _ = False
+  bitSize _ = 1
+  bit 0 = p .|. Neg p
+  bit 1 = p .&. Neg p
 
 data Model = Model
   { worlds :: Int
@@ -113,8 +123,8 @@ sat (Neg l@(Let _)) w m@Model{..} = do
    }
 
 sat (Cond x y) w m@Model{..} = ant ++ conseq
-  where ant = sat x w m -- Either the antecedent is true
-        conseq = sat (Neg y) w m  -- Or the consequent is false
+  where ant = sat (Neg x) w m -- Either the antecedent is false
+        conseq = sat y w m  -- Or the consequent is true
 
 sat (Neg (Cond x y)) w m@Model{..} = sat x w m  >>= sat (Neg y) w -- x -> y is false iff x and not y is true
 

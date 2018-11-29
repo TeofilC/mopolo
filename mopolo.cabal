@@ -1,8 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.21.2.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d8aaf90b0ab1a1ce8bf13b1b74a70538cf91ff18da2762c26c1f74317a8a4210
+-- hash: 19bdf31078ca2e5cd808de1fc5f54ea27b0ce3a9bf59f0a66ccef405c5ef5740
 
 name:           mopolo
 version:        0.1.0.0
@@ -14,7 +14,6 @@ license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
-
 extra-source-files:
     README.md
 
